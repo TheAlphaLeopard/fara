@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta property="og:title" content="FARA by BrianIsCreative">
+	<meta property="og:type" content="website" />
+	<meta property="og:description" content="An open-world roguelike that runs in the browser">
+	<meta property="og:image" content="https://i.imgur.com/i2uxiYr.png">
+	<meta property="og:url" content="https://playfara.com">
+	<meta name="keywords" content="Roguelike,Browser Game,Open World,HTML,CSS,JavaScript">
+	<meta name="author" content="@BrianIsCreative">
+
+	<title>FARA by BrianIsCreative</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+</head>
+<body id="body">
+	<canvas class="mapcanvasfull" id="mapcanvasfull" height="1000" width="1000"></canvas>
+	<div id="actionbar"></div>
+	<div id="mousemenu" class="mousewindow">
+		<div class="mousewindowlabel" id="mousemenulabel"></div>
+		<div class="mousewindowend" id="mousemenubody"></div>
+	</div>
+	<div id="mousesubmenu" class="mousewindow">
+		<div class="mousewindowlabel" id="mousesubmenulabel"></div>
+		<div class="mousewindowend" id="mousesubmenubody"></div>
+	</div>
+	<div id="tooltip" class="tooltipwindow"></div>
+	<div id="menumask"></div>
+	<div id="messagecontainer">
+		<div id="message">
+			...
+		</div>
+	</div>
+	<div id="loading">
+		<div id="loadingtext">
+			<div style="font-size: 15em; font-weight: bold; color: yellow;" class="textoutline">FARA</div>
+			<div>Preparing the grandest of adventures...</div>
+		</div>
+	</div>
+	<div id="container">
+		
+		<div id="leftpanel">
+			<div class="windowlabelred" id="capslocklabel">
+			</div>
+			<div id="leftquestwindow">
+				<div id="questwindow">
+					<div class="windowlabel" id="questlabel">
+						<div class="innerwindowlabelleft" id="questtext"></div>
+						<div class="innerwindowlabelright" id="questset"></div>
+					</div>
+					<div class="windowend" id="quests"></div>
+				</div>
+			</div>
+			<div id="shortcutwindow">
+				<div id='shortcutwrapper'>
+					<div class="windowlabel" id="shortcutlabel">
+						<div class="innerwindowlabelleft" id="shortcuttext"></div>
+						<div class="innerwindowlabelright" id="shortcutset"></div>
+					</div>
+					<div class="windowend" id="shortcuts"></div>
+				</div>
+			</div>
+			
+			<div id="statuswrapper">
+
+				<div id="characterwindow">
+					<div id="statuswindow">
+						<div class="windowlabel" id="statuslabel">
+							<div class="innerwindowlabelleft" id="statusleft"></div>
+							<div class="innerwindowlabelright" id="statusright"></div>
+						</div>
+						<div class="statuswindowend" id="status">
+							<div id="menubar"></div>
+							<div class="healthbarwindow" id="health">
+								<div class="healthtext textoutline" id="healthtext"></div>
+								<div id="healthbar" class='redbar'></div><!--
+								--><div id="healthbarprevious"></div>
+							</div>
+							<div class="staminabarwindow" id="stamina">
+								<div class="staminatext textoutline" id="staminatext"></div>
+								<div id="staminabar" class="yellowbar"></div><!--
+								--><div id="staminabarprevious"></div>
+							</div>
+							<div class="experiencebarwindow" id="experience">
+								<div class="experiencetext textoutline" id="experiencetext"></div>
+								<div id="experiencebar" class="bluebar"></div><!--
+								--><div id="experiencebarprevious"></div>
+								<div id="experiencebarlabel" class="barlabel"></div>
+							</div>
+							<div class="timebarwindow" id="timebarwindow">
+								<div id="timebar" class="greenbar"></div>
+								<div id="timebarlabel" class="barlabel"></div>
+							</div>
+							
+							<div id="characterstate"></div>
+							<span class="graytext" id="characteretclabel"></span><span id="characteretc"></span>
+						</div>
+					</div>
+				</div>
+				<div id="leftinventorywrapper">
+					<div id="holdinginventorywrapper">
+						<div class="windowlabel" id="holdinglabel">
+							<div class="innerwindowlabelleft" id="holdingleft"></div>
+							<div class="innerwindowlabelright" id="holdingright"></div>
+						</div>
+						<div class="window" id="holding">
+							<div id="characterweapons"></div>
+						</div>
+					</div>
+					<div id='wearinginventorywrapper'>
+						<div class="windowlabel" id="wearinglabel">
+							<div class="innerwindowlabelleft" id="wearingleft"></div>
+							<div class="innerwindowlabelright" id="wearingright"></div>
+						</div>
+						<div class="window" id="wearing">
+							<div id="characterarmor"></div>
+						</div>
+						<div class="windowlabel" id="inventorylabel">
+							<div class="innerwindowlabelleft" id="inventoryleft"></div>
+							<div class="innerwindowlabelright" id="inventoryright"></div>
+						</div>
+						<div class="windowend" id="inventory"></div>
+					</div>
+				</div>
+			</div>
+			<div id='leftlog'></div>
+		</div>
+		<div id="leftpanelbutton" class="panelbutton">&gt;</div>
+		<div id="middlepanel">
+			<div id="mobilebar"></div>
+			<div class="windowlabelorange" id="gamelocklabel"></div>
+			<div id='middlemap'></div>
+			
+			<div id="textcontainer">
+				<div id='middlelog'>
+					<div id='logwrapper'>
+						<div id="logheader" class='windowheader'>
+							<div id="logheaderleft" class='innerwindowlabelleft'></div>
+							<div id="logheaderright" class='innerwindowlabelright'></div>
+						</div>
+						<div id="navigationbar"></div>
+						<div id="text"></div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		<div id="rightpanelbutton" class="panelbutton">&lt;</div>
+		<div id="rightpanel">
+			<div id="infobox"></div>
+			<div id="areamapwindow">
+				<div class="windowlabel" id="areamaplabel">
+					<div class="innerwindowlabelleft" id="areamapname"></div>
+					<div class="innerwindowlabelright" id="areamaplabelright"></div>
+				</div>
+				<div id="areamapcontainer"></div>
+			</div>
+			<div id="infopanel">
+				<div id="rightquestwindow"></div>
+				<div id="rightshortcutwindow"></div>
+				<div id='rightmap'>
+					<div class="windowlabel" id="maplabel">
+						<div class="innerwindowlabelleft" id="areaname"></div>
+						<div class="innerwindowlabelright" id="arealabel"></div>
+					</div>
+					<div id="canvascontainer">
+						<canvas class="indicatorcanvas" id="indicatorcanvas" height="1000" width="1000"></canvas>
+						<canvas class="mapcanvas" id="mapcanvas" height="1000" width="1000"></canvas>
+						<canvas class="animationcanvas" id="animationcanvas" height="1000" width="1000"></canvas>
+						<canvas class="cursorcanvas" id="cursorcanvas" height="1000" width="1000"></canvas>
+					</div>
+				</div>
+				<div id="buildwindow">
+					<div class="windowlabel" id="buildwindowheader">
+						<div class="innerwindowlabelleft" id="buildlabel"></div>
+					</div>
+					<div class="windowend" id="buildsettings"></div>
+				</div>
+				
+				<div id="targetwindow">
+					<div class="windowlabel" id="targetwindowheader">
+						<div class="innerwindowlabelleft" id="targetlabel"></div>
+						<div class="innerwindowlabelright" id="targetaction"></div>
+					</div>
+					<div class="windowend" id="target">
+						<div id="charactertarget"></div>
+					</div>
+				</div>
+				<div id='targetswindow'>
+					<div class="windowlabel" id="days"></div>
+					<div class="targetwindowend" id="area">
+						<div id="targetlist"></div>
+					</div>
+				</div>
+				
+				
+				<div id='partywindow'>
+					<div class="windowlabel" id="partylabel"></div>
+					<div class="windowend" id="partycontainer"></div>
+				</div>
+				<div class="windowlabelgreen" id="savinglabel"></div>
+			</div>
+		</div>
+		<div class="quicklog" id="quicklog"></div>
+		<input id="cl" autocomplete="off" />
+	</div>
+	<div id="footer">
+		<div id="cc"></div>
+		<div class='autosavestatus' id='autosavestatus'></div>
+		<div class='onlinestatus' id='onlinestatus'></div>
+	</div>
+</body>
+<script src="noise.js"></script>
+<script src="discord-auth.js"></script>
+<script src="game-discord.js"></script>
+<script src="data.js"></script>
+<script src="o.js"></script>
+</html>
